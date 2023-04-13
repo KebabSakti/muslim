@@ -1,0 +1,42 @@
+name: muslim
+description: A new Flutter project.
+publish_to: "none"
+version: 1.0.0+1
+environment:
+  sdk: ">=2.18.6 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - asset/image/
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: asset/font/Montserrat-Regular.ttf
+        - asset: asset/font/Montserrat-Italic.ttf
+          style: italic
+        - asset: asset/font/Montserrat-Medium.ttf
+          weight: 500
+        - asset: asset/font/Montserrat-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: asset/font/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: asset/font/Montserrat-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: asset/font/Montserrat-Bold.ttf
+          weight: 700
+        - asset: asset/font/Montserrat-BoldItalic.ttf
+          weight: 700
+          style: italic
+    - family: Arabic
+      fonts:
+        - asset: asset/font/arabic.ttf
