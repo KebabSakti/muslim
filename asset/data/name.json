@@ -1,0 +1,361 @@
+[
+  {
+    "latin": "Ar-Rahman",
+    "arabic": "الرحمن",
+    "description": "The Most Merciful"
+  },
+  {
+    "latin": "Ar-Rahim",
+    "arabic": "الرحيم",
+    "description": "The Most Compassionate"
+  },
+  {
+    "latin": "Al-Malik",
+    "arabic": "الملك",
+    "description": "The King, The Sovereign"
+  },
+  {
+    "latin": "Al-Quddus",
+    "arabic": "القدوس",
+    "description": "The Holy, The Pure"
+  },
+  {
+    "latin": "As-Salam",
+    "arabic": "السلام",
+    "description": "The Peace, The Source of Peace and Safety"
+  },
+  {
+    "latin": "Al-Mu'min",
+    "arabic": "المؤمن",
+    "description": "The Faithful, The Trusted"
+  },
+  {
+    "latin": "Al-Muhaymin",
+    "arabic": "المهيمن",
+    "description": "The Protector, The Guardian, The Preserver"
+  },
+  {
+    "latin": "Al-Aziz",
+    "arabic": "العزيز",
+    "description": "The Almighty, The Invincible"
+  },
+  {
+    "latin": "Al-Jabbar",
+    "arabic": "الجبار",
+    "description": "The Compeller, The Restorer"
+  },
+  {
+    "latin": "Al-Mutakabbir",
+    "arabic": "المتكبر",
+    "description": "The Majestic, The Supreme"
+  },
+  {
+    "latin": "Al-Khaliq",
+    "arabic": "الخالق",
+    "description": "The Creator, The Maker"
+  },
+  {
+    "latin": "Al-Bari'",
+    "arabic": "البارئ",
+    "description": "The Evolver, The Originator"
+  },
+  {
+    "latin": "Al-Musawwir",
+    "arabic": "المصور",
+    "description": "The Fashioner, The Shaper"
+  },
+  {
+    "latin": "Al-Ghaffar",
+    "arabic": "الغفار",
+    "description": "The Forgiver, The Absolver"
+  },
+  {
+    "latin": "Al-Qahhar",
+    "arabic": "القهار",
+    "description": "The Subduer, The Dominant"
+  },
+  {
+    "latin": "Al-Wahhab",
+    "arabic": "الوهاب",
+    "description": "The Bestower, The Grantor"
+  },
+  {
+    "latin": "Ar-Razzaq",
+    "arabic": "الرزاق",
+    "description": "The Provider, The Sustainer"
+  },
+  {
+    "latin": "Al-Fattah",
+    "arabic": "الفتاح",
+    "description": "The Opener, The Granter of Victory"
+  },
+  {
+    "latin": "Al-'Alim",
+    "arabic": "العليم",
+    "description": "The All-Knowing, The Omniscient"
+  },
+  {
+    "latin": "Al-Hafiz",
+    "arabic": "الحفيظ",
+    "description": "The Guardian, The Preserver"
+  },
+  {
+    "latin": "Al-Muqit",
+    "arabic": "المقيت",
+    "description": "The Sustainer, The Nourisher"
+  },
+  {
+    "latin": "Al-Hasib",
+    "arabic": "الحسيب",
+    "description": "The Reckoner, The Bringer to Account"
+  },
+  {
+    "latin": "Al-Jalil",
+    "arabic": "الجليل",
+    "description": "The Majestic, The Revered"
+  },
+  {
+    "latin": "Al-Karim",
+    "arabic": "الكريم",
+    "description": "The Generous, The Bountiful"
+  },
+  {
+    "latin": "Ar-Raqib",
+    "arabic": "الرقيب",
+    "description": "The Watchful, The Observer"
+  },
+  {
+    "latin": "Al-Mujib",
+    "arabic": "المجيب",
+    "description": "The Responsive, The Answerer"
+  },
+  {
+    "latin": "Al-Wasi",
+    "arabic": "الواسع",
+    "description": "The All-Encompassing, The Vast"
+  },
+  {
+    "latin": "Al-Hakim",
+    "arabic": "الحكيم",
+    "description": "The Wise, The Judge of Judges"
+  },
+  {
+    "latin": "Al-Wadud",
+    "arabic": "الودود",
+    "description": "The Loving, The Kind One"
+  },
+  {
+    "latin": "Al-Majid",
+    "arabic": "المجيد",
+    "description": "The Glorious, The Exalted"
+  },
+  {
+    "latin": "Al-Ba'ith",
+    "arabic": "الباعث",
+    "description": "The Resurrector, The Raiser of the Dead"
+  },
+  {
+    "latin": "Ash-Shahid",
+    "arabic": "الشهيد",
+    "description": "The Witness, The Observer"
+  },
+  {
+    "latin": "Al-Haqq",
+    "arabic": "الحق",
+    "description": "The Truth, The Real"
+  },
+  {
+    "latin": "Al-Wakil",
+    "arabic": "الوكيل",
+    "description": "The Trustee, The Dependable"
+  },
+  {
+    "latin": "Al-Qawiyy",
+    "arabic": "القوي",
+    "description": "The Strong, The Most Powerful"
+  },
+  {
+    "latin": "Al-Matin",
+    "arabic": "المتين",
+    "description": "The Firm, The Steadfast"
+  },
+  {
+    "latin": "Al-Waliyy",
+    "arabic": "الولي",
+    "description": "The Friend, Patron, and Helper"
+  },
+  {
+    "latin": "Al-Hamid",
+    "arabic": "الحميد",
+    "description": "The Praised, The Commended"
+  },
+  {
+    "latin": "Al-Muhsi",
+    "arabic": "المحصي",
+    "description": "The Accounter, The Enumerator"
+  },
+  {
+    "latin": "Al-Mubdi'",
+    "arabic": "المبدئ",
+    "description": "The Originator, The Beginner"
+  },
+  {
+    "latin": "Al-Mu'id",
+    "arabic": "المعيد",
+    "description": "The Restorer, The Reinstater"
+  },
+  {
+    "latin": "Al-Muhyi",
+    "arabic": "المحيي",
+    "description": "The Giver of Life, The Vitalizer"
+  },
+  {
+    "latin": "Al-Mumit",
+    "arabic": "المميت",
+    "description": "The Bringer of Death, The Destroyer"
+  },
+  {
+    "latin": "Al-Hayy",
+    "arabic": "الحي",
+    "description": "The Ever-Living, The Alive"
+  },
+  {
+    "latin": "Al-Qayyum",
+    "arabic": "القيوم",
+    "description": "The Self-Existing, The Self-Sustaining"
+  },
+  {
+    "latin": "Al-Wajid",
+    "arabic": "الواجد",
+    "description": "The Finder, The Unfailing"
+  },
+  {
+    "latin": "Al-Majid",
+    "arabic": "الماجد",
+    "description": "The Glorious, The Illustrious"
+  },
+  {
+    "latin": "Al-Wahid",
+    "arabic": "الواحد",
+    "description": "The Unique, The One"
+  },
+  {
+    "latin": "Al-Ahad",
+    "arabic": "الاحد",
+    "description": "The Unity, The Indivisible"
+  },
+  {
+    "latin": "As-Samad",
+    "arabic": "الصمد",
+    "description": "The Eternal, The Absolute, The Self-Sufficient"
+  },
+  {
+    "latin": "Al-Qadir",
+    "arabic": "القادر",
+    "description": "The Able, The Capable, The Powerful"
+  },
+  {
+    "latin": "Al-Muqtadir",
+    "arabic": "المقتدر",
+    "description": "The Dominant, The All-Powerful"
+  },
+  {
+    "latin": "Al-Muqaddim",
+    "arabic": "المقدم",
+    "description": "The Expediter, The Promoter"
+  },
+  {
+    "latin": "Al-Mu'akhkhir",
+    "arabic": "المؤخر",
+    "description": "The Delayer, The Retarder"
+  },
+  {
+    "latin": "Al-Awwal",
+    "arabic": "الأول",
+    "description": "The First, The Beginning-less"
+  },
+  {
+    "latin": "Al-Akhir",
+    "arabic": "الأخر",
+    "description": "The Last, The Endless"
+  },
+  {
+    "latin": "Az-Zaahir",
+    "arabic": "الظاهر",
+    "description": "The Manifest, The Evident"
+  },
+  {
+    "latin": "Al-Batin",
+    "arabic": "الباطن",
+    "description": "The Hidden, The Unmanifest"
+  },
+  {
+    "latin": "Al-Wali",
+    "arabic": "الولي",
+    "description": "The Protector, The Friend, The Guardian"
+  },
+  {
+    "latin": "Al-Muta'ali",
+    "arabic": "المتعالي",
+    "description": "The Most Exalted, The Highest"
+  },
+  {
+    "latin": "Al-Barr",
+    "arabic": "البر",
+    "description": "The Good, The Beneficent"
+  },
+  {
+    "latin": "At-Tawwab",
+    "arabic": "التواب",
+    "description": "The Acceptor of Repentance, The Relenting"
+  },
+  {
+    "latin": "Al-Muntaqim",
+    "arabic": "المنتقم",
+    "description": "The Avenger"
+  },
+  {
+    "latin": "Al-Afuww",
+    "arabic": "العفو",
+    "description": "The Pardoner, The Forgiver"
+  },
+  {
+    "latin": "Ar-Rauf",
+    "arabic": "الرؤوف",
+    "description": "The Compassionate, The Kind"
+  },
+  {
+    "latin": "Malik-ul-Mulk",
+    "arabic": "مالك الملك",
+    "description": "The Owner of All Sovereignty"
+  },
+  {
+    "latin": "Dhu-l-Jalal wa-l-Ikram",
+    "arabic": "ذُو الجَلال والإكْرَام",
+    "description": "Possessor of Glory and Honour"
+  },
+  { "latin": "Al-Muqsit", "arabic": "المُقْسِط", "description": "The Just" },
+  { "latin": "Al-Jami", "arabic": "الجَامِع", "description": "The Gatherer" },
+  {
+    "latin": "Al-Ghani",
+    "arabic": "الغَنِي",
+    "description": "The Self-Sufficient"
+  },
+  {
+    "latin": "Al-Mughni",
+    "arabic": "المُغْنِي",
+    "description": "The Bestower of Sufficiency"
+  },
+  { "latin": "Al-Mani", "arabic": "المانع", "description": "The Preventer" },
+  {
+    "latin": "Ad-Darr",
+    "arabic": "الضَّارَّ",
+    "description": "The Distressor"
+  },
+  {
+    "latin": "An-Nafi",
+    "arabic": "النَّافِع",
+    "description": "The Bestower of Benefits"
+  },
+  { "latin": "An-Nur", "arabic": "النُّور", "description": "The Light" }
+]

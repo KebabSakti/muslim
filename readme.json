@@ -1,0 +1,22 @@
+[
+  {
+    "id": "dzikir-pagi",
+    "mark": "pagi1",
+    "item": [
+      {
+        "id": "pagi1",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "id": "dzikir-petang",
+    "mark": "petang1",
+    "item": [
+      {
+        "id": "petang1",
+        "count": 3
+      }
+    ]
+  }
+]
