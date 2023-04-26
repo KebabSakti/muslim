@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim/core/config/const.dart';
 
-import '../../../core/config/const.dart';
-import '../../bloc/config/config_cubit.dart';
+import '../../bloc/init/init_cubit.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key});
@@ -12,10 +12,14 @@ class Init extends StatefulWidget {
 }
 
 class _InitState extends State<Init> {
-  Future _init() async {
-    context.read<ConfigCubit>().load();
+  void _initStateListener(BuildContext context, InitState state) {
+    Navigator.of(context).pushNamedAndRemoveUntil(home, (route) => false);
   }
 
+  Future _init() async {
+    context.read<InitCubit>().load(context);
+  }
+  
   @override
   void initState() {
     _init();
@@ -25,10 +29,8 @@ class _InitState extends State<Init> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ConfigCubit, ConfigState>(
-      listener: (context, state) {
-        Navigator.of(context).pushNamedAndRemoveUntil(home, (route) => false);
-      },
+    return BlocListener<InitCubit, InitState>(
+      listener: _initStateListener,
       child: const Scaffold(),
     );
   }

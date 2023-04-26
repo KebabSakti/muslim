@@ -1,16 +1,18 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../controller/bookmark_controller.dart';
+import '../../../controller/dzikir_controller.dart';
 import '../../../core/config/style.dart';
-import '../../../core/helper/utility.dart';
+import '../../../model/bookmark/bookmark.dart';
 import '../../../model/dzikir/dzikir.dart';
+import '../../../model/item/item.dart';
+import '../../../model/surah/surah.dart';
 import '../../bloc/counter/counter_cubit.dart';
+import '../../bloc/init/init_cubit.dart';
+import '../../widget/surah_view.dart';
 import '../../widget/theme_loader_button.dart';
 
 class Home extends StatefulWidget {
@@ -21,21 +23,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _counterCubit = CounterCubit(0);
+  final _dzikirController = DzikirController();
+  final _bookmarkController = BookmarkController();
 
-  final _bookmark = BookmarkController();
+  late final CounterCubit _counterCubit;
+  late final PageController _pageController;
+  late final List<Dzikir> _dzikirs;
+  late final Dzikir _dzikir;
+  late final List<Surah> _surahs;
+  late final List<Bookmark> _bookmarks;
+  late final List<Item> _items;
+  late final Bookmark _bookmark;
+
+  void _onPageChanged(Surah surah) {
+    final item = _bookmarkController.item(surah.id!, _bookmark);
+    _counterCubit.setCount(item.count!);
+  }
 
   Future _init() async {
-    final data = await DefaultAssetBundle.of(context)
-        .loadString("asset/data/dzikir.json");
+    final init = context.read<InitCubit>().state.init;
 
-    final parsed = await compute(parseJson, data);
-    final pagi = parsed.firstWhere((e) => e['id'] == 'dzikir-pagi');
-    final results = Dzikir.fromJson(pagi);
+    _dzikirs = init.dzikirs;
+    _bookmarks = init.bookmarks;
+    _dzikir = _dzikirController.dzikir('dzikir-pagi', _dzikirs);
+    _bookmark = _bookmarkController.bookmark('dzikir-pagi', _bookmarks);
+    _surahs = _dzikir.surah!;
+    _items = _bookmark.item!;
 
-    final bookmark = await _bookmark.load();
+    final surahIndex =
+        _surahs.indexWhere((element) => element.id == _bookmark.mark);
+    final itemIndex =
+        _items.indexWhere((element) => element.id == _bookmark.mark);
 
-    log(bookmark.toString());
+    _pageController = PageController(initialPage: surahIndex);
+    _counterCubit = CounterCubit(_items[itemIndex].count!);
 
     FlutterNativeSplash.remove();
   }
@@ -50,6 +71,7 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     _counterCubit.close();
+    _pageController.dispose();
 
     super.dispose();
   }
@@ -67,44 +89,14 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: medium, right: medium, top: medium),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Surah ke 1',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                  Text(
-                    '(Baca 1 kali)',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: theme.colorScheme.onSurface),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: medium),
             Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: medium),
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    Text(
-                      'اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ، لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ، لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ، مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ، يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ، وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلاَّ بِمَا شَاءَ، وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ، وَلَا يَئُودُهُ حِفْظُهُمَا، وَهُوَ الْعَلِيُّ الْعَظِيمُ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: large3x,
-                        fontFamily: 'Arabic',
-                        color: theme.colorScheme.onSurface,
-                      ),
-                    ),
-                  ],
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  _onPageChanged(_surahs[index]);
+                },
+                children: List<SurahView>.from(
+                  _surahs.map((e) => SurahView(surah: e)),
                 ),
               ),
             ),
@@ -143,8 +135,11 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                BlocBuilder<CounterCubit, CounterState>(
+                BlocConsumer<CounterCubit, CounterState>(
                   bloc: _counterCubit,
+                  listener: (context, state) {
+                    // _bookmarkController.update(Item(), bookmark, bookmarks)
+                  },
                   builder: (context, state) {
                     return Text(
                       '${state.count}',

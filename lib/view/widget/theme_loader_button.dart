@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../model/config/config.dart';
-import '../bloc/config/config_cubit.dart';
+import '../bloc/init/init_cubit.dart';
 
 class ThemeLoaderButton extends StatelessWidget {
   const ThemeLoaderButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ConfigCubit, ConfigState>(
+    return BlocBuilder<InitCubit, InitState>(
       builder: (context, state) {
-        final config = state.config;
+        final config = state.init.config;
 
         bool themeIsLight() {
           final isLightTheme = (config.theme == ThemeMode.light);
@@ -24,7 +23,7 @@ class ThemeLoaderButton extends StatelessWidget {
               ? ThemeMode.dark
               : ThemeMode.light;
 
-          context.read<ConfigCubit>().update(Config(theme: theme));
+          context.read<InitCubit>().setConfig(config.copyWith(theme: theme));
         }
 
         final icon =

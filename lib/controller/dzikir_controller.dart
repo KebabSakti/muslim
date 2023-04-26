@@ -16,13 +16,13 @@ class DzikirController {
     return results;
   }
 
-  Future<Dzikir> dzikir(String dzikirId, List<Dzikir> dzikirs) async {
+  Dzikir dzikir(String dzikirId, List<Dzikir> dzikirs) {
     final results = dzikirs.firstWhere((element) => element.id == dzikirId);
 
     return results;
   }
 
-  Future<Surah> surah(String surahId, Dzikir dzikir) async {
+  Surah surah(String surahId, Dzikir dzikir) {
     final results =
         dzikir.surah!.firstWhere((element) => element.id == surahId);
 

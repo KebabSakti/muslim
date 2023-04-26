@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'core/config/app_theme.dart';
 import 'core/config/routes.dart';
-import 'view/bloc/config/config_cubit.dart';
+import 'view/bloc/init/init_cubit.dart';
 
 void main() async {
   await _init();
@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ConfigCubit()),
+        BlocProvider(create: (context) => InitCubit()),
       ],
-      child: BlocSelector<ConfigCubit, ConfigState, ThemeMode>(
+      child: BlocSelector<InitCubit, InitState, ThemeMode>(
         selector: (state) {
-          return state.config.theme;
+          return state.init.config.theme;
         },
         builder: (context, state) {
           return MaterialApp(

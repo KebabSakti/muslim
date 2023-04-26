@@ -19,6 +19,10 @@ class CounterCubit extends Cubit<CounterState> {
     }
   }
 
+  void setCount(int count) {
+    emit(CounterState(count: count));
+  }
+
   void reset() {
     emit(const CounterState(count: 0));
   }

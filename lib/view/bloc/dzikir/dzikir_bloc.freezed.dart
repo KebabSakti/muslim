@@ -20,33 +20,33 @@ mixin _$DzikirEvent {
   List<Dzikir> get dzikirs => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String dzikirId, List<Dzikir> dzikirs) loaded,
+    required TResult Function(String dzikirId, List<Dzikir> dzikirs) dzikir,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String dzikirId, List<Dzikir> dzikirs)? loaded,
+    TResult? Function(String dzikirId, List<Dzikir> dzikirs)? dzikir,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String dzikirId, List<Dzikir> dzikirs)? loaded,
+    TResult Function(String dzikirId, List<Dzikir> dzikirs)? dzikir,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) dzikir,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? dzikir,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? dzikir,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,7 +147,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'DzikirEvent.loaded(dzikirId: $dzikirId, dzikirs: $dzikirs)';
+    return 'DzikirEvent.dzikir(dzikirId: $dzikirId, dzikirs: $dzikirs)';
   }
 
   @override
@@ -173,27 +173,27 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String dzikirId, List<Dzikir> dzikirs) loaded,
+    required TResult Function(String dzikirId, List<Dzikir> dzikirs) dzikir,
   }) {
-    return loaded(dzikirId, dzikirs);
+    return dzikir(dzikirId, dzikirs);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String dzikirId, List<Dzikir> dzikirs)? loaded,
+    TResult? Function(String dzikirId, List<Dzikir> dzikirs)? dzikir,
   }) {
-    return loaded?.call(dzikirId, dzikirs);
+    return dzikir?.call(dzikirId, dzikirs);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String dzikirId, List<Dzikir> dzikirs)? loaded,
+    TResult Function(String dzikirId, List<Dzikir> dzikirs)? dzikir,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(dzikirId, dzikirs);
+    if (dzikir != null) {
+      return dzikir(dzikirId, dzikirs);
     }
     return orElse();
   }
@@ -201,27 +201,27 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) dzikir,
   }) {
-    return loaded(this);
+    return dzikir(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? dzikir,
   }) {
-    return loaded?.call(this);
+    return dzikir?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? dzikir,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (dzikir != null) {
+      return dzikir(this);
     }
     return orElse();
   }

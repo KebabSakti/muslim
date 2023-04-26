@@ -14,9 +14,9 @@ class DzikirBloc extends Bloc<DzikirEvent, DzikirState> {
   DzikirBloc() : super(const _Initial()) {
     on<DzikirEvent>((event, emit) async {
       await event.when(
-        loaded: (dzikirId, dzikirs) async {
+        dzikir: (dzikirId, dzikirs) async {
           emit(const _Loading());
-          final results = await _dzikirController.dzikir(dzikirId, dzikirs);
+          final results = _dzikirController.dzikir(dzikirId, dzikirs);
           emit(_Load(dzikir: results));
         },
       );

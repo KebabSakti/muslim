@@ -10,20 +10,30 @@ import '../model/dzikir/dzikir.dart';
 import '../model/item/item.dart';
 
 class BookmarkController {
-  Future init(List<Dzikir> dzikirs) async {
-    final bookmarks = List<Bookmark>.from(dzikirs.map(
-      (e) {
-        final firstSurah = e.surah!.first;
+  Future<List<Bookmark>> init(List<Dzikir> dzikirs) async {
+    final storage = await SharedPreferences.getInstance();
+    final jsonString = storage.getString('bookmark');
 
-        return Bookmark(
-          id: e.id,
-          mark: firstSurah.id,
-          item: List<Item>.from(e.surah!.map((e) => Item(id: e.id, count: 0))),
-        );
-      },
-    ));
+    if (jsonString == null) {
+      final bookmarks = List<Bookmark>.from(dzikirs.map(
+        (e) {
+          final firstSurah = e.surah!.first;
 
-    await save(bookmarks);
+          return Bookmark(
+            id: e.id,
+            mark: firstSurah.id,
+            item:
+                List<Item>.from(e.surah!.map((e) => Item(id: e.id, count: 0))),
+          );
+        },
+      ));
+
+      await save(bookmarks);
+    }
+
+    final updatedBookmarks = await load();
+
+    return updatedBookmarks;
   }
 
   Future<List<Bookmark>> load() async {
@@ -46,16 +56,17 @@ class BookmarkController {
     await storage.setString('bookmark', jsonEncode(bookmarks));
   }
 
-  Future<Bookmark> bookmark(String bookmarkId, List<Bookmark> bookmarks) async {
+  Bookmark bookmark(String bookmarkId, List<Bookmark> bookmarks) {
     final results = bookmarks.firstWhere((element) => element.id == bookmarkId);
 
     return results;
   }
 
-  Future<Item> item(String itemId, Bookmark bookmark) async {
-    final item = bookmark.item!.firstWhere((element) => element.id == itemId);
+  Item item(String itemId, Bookmark bookmark) {
+    final results =
+        bookmark.item!.firstWhere((element) => element.id == itemId);
 
-    return item;
+    return results;
   }
 
   Future update(Item item, Bookmark bookmark, List<Bookmark> bookmarks) async {
