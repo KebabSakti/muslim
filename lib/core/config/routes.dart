@@ -11,7 +11,7 @@ class Routes {
       home: (context) => const Home(),
       dzikir: (context) {
         final args = ModalRoute.of(context)!.settings.arguments;
-        return Dzikir(type: args as String);
+        return Dzikir(dzikirId: args as String);
       },
     };
   }

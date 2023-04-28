@@ -10,6 +10,7 @@ class Config with _$Config {
     @Default(ThemeMode.light) ThemeMode theme,
     @Default('arabic') String lang,
     @Default(1) int zoom,
+    @Default(false) bool bookmark,
   }) = _Config;
 
   factory Config.fromJson(Map<String, dynamic> json) => _$ConfigFromJson(json);

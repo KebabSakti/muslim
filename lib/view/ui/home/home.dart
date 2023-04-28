@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
     _bookmarks = init.bookmarks;
     _dzikir = _dzikirController.dzikir('dzikir-pagi', _dzikirs);
     _bookmark = _bookmarkController.bookmark('dzikir-pagi', _bookmarks);
+
     _surahs = _dzikir.surah!;
     _items = _bookmark.item!;
 
@@ -138,7 +139,13 @@ class _HomeState extends State<Home> {
                 BlocConsumer<CounterCubit, CounterState>(
                   bloc: _counterCubit,
                   listener: (context, state) {
-                    // _bookmarkController.update(Item(), bookmark, bookmarks)
+                    final surahIndex = _surahs
+                        .indexWhere((element) => element.id == _bookmark.mark);
+
+                    _bookmarkController.update(
+                        Item(id: _items[surahIndex].id, count: state.count),
+                        _bookmark,
+                        _bookmarks);
                   },
                   builder: (context, state) {
                     return Text(

@@ -75,9 +75,15 @@ class BookmarkController {
     final bookmarksIndex =
         bookmarks.indexWhere((element) => element.id == bookmark.id);
 
-    bookmark.item![itemIndex] = item;
-    bookmarks[bookmarksIndex] = bookmark;
+    List<Bookmark> newBookmarks = List<Bookmark>.from(bookmarks);
+    List<Item> newItems = List<Item>.from(bookmark.item!);
 
-    await save(bookmarks);
+    newItems[itemIndex] = item;
+
+    Bookmark newBookmark = bookmark.copyWith(item: newItems);
+
+    newBookmarks[bookmarksIndex] = newBookmark;
+
+    await save(newBookmarks);
   }
 }
