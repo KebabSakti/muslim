@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../model/bookmark/bookmark.dart';
+import 'package:get_it/get_it.dart';
 
-import '../../../controller/bookmark_controller.dart';
-import '../../../controller/config_controller.dart';
-import '../../../controller/dzikir_controller.dart';
+import '../../../controller/bookmark_controller_other.dart';
+import '../../../controller/config_controller_other.dart';
+import '../../../controller/dzikir_controller_other.dart';
+import '../../../model/bookmark/bookmark.dart';
 import '../../../model/config/config.dart';
 import '../../../model/init/init.dart';
 
@@ -15,32 +15,42 @@ part 'init_state.dart';
 class InitCubit extends Cubit<InitState> {
   InitCubit() : super(const InitState());
 
-  final _configController = ConfigController();
-  final _dzikirController = DzikirController();
-  final _bookmarkController = BookmarkController();
+  final _configController = GetIt.I<ConfigController>();
+  final _dzikirController = GetIt.I<DzikirController>();
+  final _bookmarkController = GetIt.I<BookmarkController>();
 
-  Future load(BuildContext context) async {
-    final dzikirs = await _dzikirController.load(context);
-    final bookmarks = await _bookmarkController.init(dzikirs);
-    final config = await _configController.load();
+  Future load() async {
+    final config = await _configController.show();
+    final dzikirs = await _dzikirController.find();
+    List<Bookmark> bookmarks = await _bookmarkController.find();
+
+    if (bookmarks.isEmpty) {
+      bookmarks = await _bookmarkController.init(dzikirs);
+    }
 
     emit(InitState(
         init: Init(config: config, dzikirs: dzikirs, bookmarks: bookmarks)));
   }
 
-  void setConfig(Config config) {
-    final updatedState = state.init.copyWith(config: config);
+  Future setConfig(Config config) async {
+    final updatedData = state.init.copyWith(config: config);
 
-    emit(InitState(init: updatedState));
+    _configController.update(updatedData.config);
 
-    _configController.save(updatedState.config);
+    emit(state.copyWith(init: updatedData));
   }
 
-  void setBookmark(List<Bookmark> bookmarks) {
-    final updatedState = state.init.copyWith(bookmarks: bookmarks);
+  Future setBookmark(Bookmark bookmark) async {
+    _bookmarkController.upsert(bookmark);
 
-    emit(InitState(init: updatedState));
+    final updatedData = List<Bookmark>.from(state.init.bookmarks.map((e) {
+      if (e.id == bookmark.id) {
+        return bookmark;
+      }
 
-    _bookmarkController.save(updatedState.bookmarks);
+      return e;
+    }));
+
+    emit(state.copyWith(init: state.init.copyWith(bookmarks: updatedData)));
   }
 }

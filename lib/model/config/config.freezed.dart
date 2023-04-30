@@ -23,7 +23,6 @@ mixin _$Config {
   ThemeMode get theme => throw _privateConstructorUsedError;
   String get lang => throw _privateConstructorUsedError;
   int get zoom => throw _privateConstructorUsedError;
-  bool get bookmark => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $ConfigCopyWith<$Res> {
   factory $ConfigCopyWith(Config value, $Res Function(Config) then) =
       _$ConfigCopyWithImpl<$Res, Config>;
   @useResult
-  $Res call({ThemeMode theme, String lang, int zoom, bool bookmark});
+  $Res call({ThemeMode theme, String lang, int zoom});
 }
 
 /// @nodoc
@@ -54,7 +53,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? theme = null,
     Object? lang = null,
     Object? zoom = null,
-    Object? bookmark = null,
   }) {
     return _then(_value.copyWith(
       theme: null == theme
@@ -69,10 +67,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int,
-      bookmark: null == bookmark
-          ? _value.bookmark
-          : bookmark // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -83,7 +77,7 @@ abstract class _$$_ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       __$$_ConfigCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeMode theme, String lang, int zoom, bool bookmark});
+  $Res call({ThemeMode theme, String lang, int zoom});
 }
 
 /// @nodoc
@@ -99,7 +93,6 @@ class __$$_ConfigCopyWithImpl<$Res>
     Object? theme = null,
     Object? lang = null,
     Object? zoom = null,
-    Object? bookmark = null,
   }) {
     return _then(_$_Config(
       theme: null == theme
@@ -114,10 +107,6 @@ class __$$_ConfigCopyWithImpl<$Res>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int,
-      bookmark: null == bookmark
-          ? _value.bookmark
-          : bookmark // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -126,10 +115,7 @@ class __$$_ConfigCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Config implements _Config {
   const _$_Config(
-      {this.theme = ThemeMode.light,
-      this.lang = 'arabic',
-      this.zoom = 1,
-      this.bookmark = false});
+      {this.theme = ThemeMode.light, this.lang = 'arabic', this.zoom = 1});
 
   factory _$_Config.fromJson(Map<String, dynamic> json) =>
       _$$_ConfigFromJson(json);
@@ -143,13 +129,10 @@ class _$_Config implements _Config {
   @override
   @JsonKey()
   final int zoom;
-  @override
-  @JsonKey()
-  final bool bookmark;
 
   @override
   String toString() {
-    return 'Config(theme: $theme, lang: $lang, zoom: $zoom, bookmark: $bookmark)';
+    return 'Config(theme: $theme, lang: $lang, zoom: $zoom)';
   }
 
   @override
@@ -159,14 +142,12 @@ class _$_Config implements _Config {
             other is _$_Config &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.lang, lang) || other.lang == lang) &&
-            (identical(other.zoom, zoom) || other.zoom == zoom) &&
-            (identical(other.bookmark, bookmark) ||
-                other.bookmark == bookmark));
+            (identical(other.zoom, zoom) || other.zoom == zoom));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, theme, lang, zoom, bookmark);
+  int get hashCode => Object.hash(runtimeType, theme, lang, zoom);
 
   @JsonKey(ignore: true)
   @override
@@ -184,10 +165,7 @@ class _$_Config implements _Config {
 
 abstract class _Config implements Config {
   const factory _Config(
-      {final ThemeMode theme,
-      final String lang,
-      final int zoom,
-      final bool bookmark}) = _$_Config;
+      {final ThemeMode theme, final String lang, final int zoom}) = _$_Config;
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$_Config.fromJson;
 
@@ -197,8 +175,6 @@ abstract class _Config implements Config {
   String get lang;
   @override
   int get zoom;
-  @override
-  bool get bookmark;
   @override
   @JsonKey(ignore: true)
   _$$_ConfigCopyWith<_$_Config> get copyWith =>

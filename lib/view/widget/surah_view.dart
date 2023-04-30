@@ -6,10 +6,12 @@ import '../../model/surah/surah.dart';
 class SurahView extends StatelessWidget {
   const SurahView({
     super.key,
+    required this.lang,
     required this.surah,
   });
 
   final Surah surah;
+  final String lang;
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +45,25 @@ class SurahView extends StatelessWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: medium),
             physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                Text(
-                  surah.arabic.toString(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: large3x,
-                    fontFamily: 'Arabic',
-                    color: theme.colorScheme.onSurface,
+            child: lang == 'arabic'
+                ? Text(
+                    surah.arabic.toString(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: large3x,
+                      fontFamily: 'Arabic',
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  )
+                : Text(
+                    surah.latin.toString(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      height: 1.5,
+                      fontSize: medium3x,
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
-                ),
-              ],
-            ),
           ),
         ),
       ],

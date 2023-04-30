@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/config/const.dart';
-import '../../bloc/config/config_cubit.dart';
+import '../../bloc/init/init_cubit.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key});
@@ -12,13 +12,13 @@ class Init extends StatefulWidget {
 }
 
 class _InitState extends State<Init> {
-  void _configStateListener(BuildContext context, ConfigState state) {
+  void _initStateListener(BuildContext context, InitState state) {
     Navigator.of(context).pushNamedAndRemoveUntil(
         dzikir, arguments: 'dzikir-pagi', (route) => false);
   }
 
   Future _init() async {
-    context.read<ConfigCubit>().load();
+    context.read<InitCubit>().load();
   }
 
   @override
@@ -30,8 +30,8 @@ class _InitState extends State<Init> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ConfigCubit, ConfigState>(
-      listener: _configStateListener,
+    return BlocListener<InitCubit, InitState>(
+      listener: _initStateListener,
       child: const Scaffold(),
     );
   }

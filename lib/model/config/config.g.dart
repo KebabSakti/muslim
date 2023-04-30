@@ -11,14 +11,12 @@ _$_Config _$$_ConfigFromJson(Map<String, dynamic> json) => _$_Config(
           ThemeMode.light,
       lang: json['lang'] as String? ?? 'arabic',
       zoom: json['zoom'] as int? ?? 1,
-      bookmark: json['bookmark'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_ConfigToJson(_$_Config instance) => <String, dynamic>{
       'theme': _$ThemeModeEnumMap[instance.theme]!,
       'lang': instance.lang,
       'zoom': instance.zoom,
-      'bookmark': instance.bookmark,
     };
 
 const _$ThemeModeEnumMap = {

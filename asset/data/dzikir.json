@@ -170,7 +170,7 @@
     "name": "Dzikir Petang",
     "surah": [
       {
-        "id": "pagi1",
+        "id": "petang1",
         "number": 1,
         "count": 1,
         "name": "Ayat Kursi",
@@ -178,7 +178,7 @@
         "latin": "Allaahu Laailaaha illa huwal hayyul qayyuum. Laa ta'khudzuhu sinatuw walaa nauum. Lahuu maa fissamaawaati wamaa fil ardhi. Mangdzalladzii yasyfa'u 'indahuu illai bi idznih. Ya'lamu maa baina aiydiihim wamaa kholfahum walaa yukhiithuuna bisyayin min 'ilmihii illaa bimaa syaaa a. wasi'a kursiyyuhus samaawaati wal ardho. Walaa yauduhuu khifdhuhumaa wa huwal'aliyyul 'adhiim"
       },
       {
-        "id": "pagi2",
+        "id": "petang2",
         "number": 2,
         "count": 3,
         "name": "Al Ikhlas",

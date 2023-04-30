@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,8 +9,8 @@ import '../repository/bookmark_repository.dart';
 
 class BookmarkLocal implements BookmarkRepository {
   @override
-  Future<List<Bookmark>?> find() async {
-    List<Bookmark>? results;
+  Future<List<Bookmark>> find() async {
+    List<Bookmark> results = [];
 
     final storage = await SharedPreferences.getInstance();
     final jsonString = storage.getString('bookmark');
@@ -22,39 +24,29 @@ class BookmarkLocal implements BookmarkRepository {
   }
 
   @override
-  Future<Bookmark?> show(String bookmarkId) async {
-    Bookmark? results;
-    final bookmarks = await find();
-
-    if (bookmarks != null) {
-      results = bookmarks.firstWhere((element) => element.id == bookmarkId);
-    }
-
-    return results;
-  }
-
-  @override
   Future<void> upsert(Bookmark bookmark) async {
     List<Bookmark> updatedBookmarks = [];
+
+    final storage = await SharedPreferences.getInstance();
     final bookmarks = await find();
 
-    if (bookmarks != null) {
-      final bookmarked = bookmarks.firstWhere(
-        (element) => element.id == bookmark.id,
-        orElse: () => const Bookmark(),
-      );
+    final bookmarked = bookmarks.firstWhere(
+      (element) => element.id == bookmark.id,
+      orElse: () => const Bookmark(),
+    );
 
-      if (bookmarked.id != null) {
-        updatedBookmarks = List<Bookmark>.from(bookmarks.map((e) {
-          if (e.id == bookmark.id) {
-            return bookmark;
-          }
+    if (bookmarked.id != null) {
+      updatedBookmarks = List<Bookmark>.from(bookmarks.map((e) {
+        if (e.id == bookmark.id) {
+          return bookmark;
+        }
 
-          return e;
-        }));
-      }
+        return e;
+      }));
     } else {
-      updatedBookmarks = [...updatedBookmarks, bookmark];
+      updatedBookmarks = [...bookmarks, bookmark];
     }
+
+    await storage.setString('bookmark', jsonEncode(updatedBookmarks));
   }
 }

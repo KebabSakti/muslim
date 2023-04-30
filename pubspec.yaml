@@ -55,4 +55,4 @@ flutter:
           style: italic
     - family: Arabic
       fonts:
-        - asset: asset/font/arabic.ttf
+        - asset: asset/font/qalam.ttf

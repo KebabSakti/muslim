@@ -97,7 +97,10 @@ class _HomeState extends State<Home> {
                   _onPageChanged(_surahs[index]);
                 },
                 children: List<SurahView>.from(
-                  _surahs.map((e) => SurahView(surah: e)),
+                  _surahs.map((e) => SurahView(
+                        lang: 'latins',
+                        surah: e,
+                      )),
                 ),
               ),
             ),
