@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:muslim/model/item/item.dart';
+import '../item/item.dart';
 
 part 'bookmark.freezed.dart';
 part 'bookmark.g.dart';

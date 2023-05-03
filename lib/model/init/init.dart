@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:muslim/model/bookmark/bookmark.dart';
-import 'package:muslim/model/config/config.dart';
+import '../bookmark/bookmark.dart';
+import '../config/config.dart';
 
 import '../dzikir/dzikir.dart';
 

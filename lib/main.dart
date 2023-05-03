@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 
-import 'controller/bookmark_controller_other.dart';
-import 'controller/config_controller_other.dart';
-import 'controller/dzikir_controller_other.dart';
+import 'controller/bookmark_controller.dart';
+import 'controller/config_controller.dart';
+import 'controller/dzikir_controller.dart';
 import 'core/config/app_theme.dart';
 import 'core/config/routes.dart';
 import 'data/local/bookmark_local.dart';
@@ -40,10 +40,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => InitCubit()),
-      ],
+    return BlocProvider(
+      create: (context) => InitCubit(),
       child: BlocSelector<InitCubit, InitState, ThemeMode>(
         selector: (state) {
           return state.init.config.theme;

@@ -13,8 +13,7 @@ class Init extends StatefulWidget {
 
 class _InitState extends State<Init> {
   void _initStateListener(BuildContext context, InitState state) {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-        dzikir, arguments: 'dzikir-pagi', (route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil(home, (route) => false);
   }
 
   Future _init() async {

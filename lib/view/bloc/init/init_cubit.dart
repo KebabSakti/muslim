@@ -2,9 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../controller/bookmark_controller_other.dart';
-import '../../../controller/config_controller_other.dart';
-import '../../../controller/dzikir_controller_other.dart';
+import '../../../controller/bookmark_controller.dart';
+import '../../../controller/config_controller.dart';
+import '../../../controller/dzikir_controller.dart';
 import '../../../model/bookmark/bookmark.dart';
 import '../../../model/config/config.dart';
 import '../../../model/init/init.dart';
@@ -37,7 +37,7 @@ class InitCubit extends Cubit<InitState> {
 
     _configController.update(updatedData.config);
 
-    emit(state.copyWith(init: updatedData));
+    emit(state.copyWith(init: updatedData, reset: false));
   }
 
   Future setBookmark(Bookmark bookmark) async {
@@ -51,6 +51,23 @@ class InitCubit extends Cubit<InitState> {
       return e;
     }));
 
-    emit(state.copyWith(init: state.init.copyWith(bookmarks: updatedData)));
+    emit(state.copyWith(
+        init: state.init.copyWith(bookmarks: updatedData), reset: false));
+  }
+
+  Future delete(String bookmarkId) async {
+    await _bookmarkController.delete(bookmarkId);
+    final bookmarks = await _bookmarkController.find();
+
+    emit(state.copyWith(
+        init: state.init.copyWith(bookmarks: bookmarks), reset: true));
+  }
+
+  Future reset() async {
+    await _bookmarkController.clear();
+    final bookmarks = await _bookmarkController.init(state.init.dzikirs);
+
+    emit(state.copyWith(
+        init: state.init.copyWith(bookmarks: bookmarks), reset: true));
   }
 }

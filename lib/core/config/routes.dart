@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muslim/view/ui/init/init.dart';
+import '../../view/ui/init/init.dart';
 import '../../view/ui/dzikir/dzikir.dart';
 import '../../view/ui/home/home.dart';
 import 'const.dart';

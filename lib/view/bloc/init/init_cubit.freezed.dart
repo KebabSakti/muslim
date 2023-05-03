@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$InitState {
   Init get init => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  bool get reset => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InitStateCopyWith<InitState> get copyWith =>
@@ -28,7 +30,7 @@ abstract class $InitStateCopyWith<$Res> {
   factory $InitStateCopyWith(InitState value, $Res Function(InitState) then) =
       _$InitStateCopyWithImpl<$Res, InitState>;
   @useResult
-  $Res call({Init init});
+  $Res call({Init init, bool loading, bool reset});
 
   $InitCopyWith<$Res> get init;
 }
@@ -47,12 +49,22 @@ class _$InitStateCopyWithImpl<$Res, $Val extends InitState>
   @override
   $Res call({
     Object? init = null,
+    Object? loading = null,
+    Object? reset = null,
   }) {
     return _then(_value.copyWith(
       init: null == init
           ? _value.init
           : init // ignore: cast_nullable_to_non_nullable
               as Init,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reset: null == reset
+          ? _value.reset
+          : reset // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -72,7 +84,7 @@ abstract class _$$_InitStateCopyWith<$Res> implements $InitStateCopyWith<$Res> {
       __$$_InitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Init init});
+  $Res call({Init init, bool loading, bool reset});
 
   @override
   $InitCopyWith<$Res> get init;
@@ -90,12 +102,22 @@ class __$$_InitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? init = null,
+    Object? loading = null,
+    Object? reset = null,
   }) {
     return _then(_$_InitState(
       init: null == init
           ? _value.init
           : init // ignore: cast_nullable_to_non_nullable
               as Init,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      reset: null == reset
+          ? _value.reset
+          : reset // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -104,15 +126,23 @@ class __$$_InitStateCopyWithImpl<$Res>
 
 class _$_InitState implements _InitState {
   const _$_InitState(
-      {this.init = const Init(config: Config(), dzikirs: [], bookmarks: [])});
+      {this.init = const Init(config: Config(), dzikirs: [], bookmarks: []),
+      this.loading = false,
+      this.reset = false});
 
   @override
   @JsonKey()
   final Init init;
+  @override
+  @JsonKey()
+  final bool loading;
+  @override
+  @JsonKey()
+  final bool reset;
 
   @override
   String toString() {
-    return 'InitState(init: $init)';
+    return 'InitState(init: $init, loading: $loading, reset: $reset)';
   }
 
   @override
@@ -120,11 +150,13 @@ class _$_InitState implements _InitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InitState &&
-            (identical(other.init, init) || other.init == init));
+            (identical(other.init, init) || other.init == init) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.reset, reset) || other.reset == reset));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, init);
+  int get hashCode => Object.hash(runtimeType, init, loading, reset);
 
   @JsonKey(ignore: true)
   @override
@@ -134,10 +166,15 @@ class _$_InitState implements _InitState {
 }
 
 abstract class _InitState implements InitState {
-  const factory _InitState({final Init init}) = _$_InitState;
+  const factory _InitState(
+      {final Init init, final bool loading, final bool reset}) = _$_InitState;
 
   @override
   Init get init;
+  @override
+  bool get loading;
+  @override
+  bool get reset;
   @override
   @JsonKey(ignore: true)
   _$$_InitStateCopyWith<_$_InitState> get copyWith =>

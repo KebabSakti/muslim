@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/helper/utility.dart';
 import '../../model/bookmark/bookmark.dart';
+import '../../model/item/item.dart';
 import '../repository/bookmark_repository.dart';
 
 class BookmarkLocal implements BookmarkRepository {
@@ -48,5 +49,33 @@ class BookmarkLocal implements BookmarkRepository {
     }
 
     await storage.setString('bookmark', jsonEncode(updatedBookmarks));
+  }
+
+  @override
+  Future<void> delete(String bookmarkId) async {
+    final storage = await SharedPreferences.getInstance();
+    final bookmarks = await find();
+    final updatedBookmarks = List<Bookmark>.from(bookmarks.map((e) {
+      if (e.id == bookmarkId) {
+        final items = List<Item>.from(e.item!.map((e) {
+          return e.copyWith(count: 0);
+        }));
+
+        return e.copyWith(
+          mark: e.item!.first.id,
+          item: items,
+        );
+      }
+
+      return e;
+    }));
+
+    await storage.setString('bookmark', jsonEncode(updatedBookmarks));
+  }
+
+  @override
+  Future<void> clear() async {
+    final storage = await SharedPreferences.getInstance();
+    await storage.remove('bookmark');
   }
 }

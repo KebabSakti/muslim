@@ -1,17 +1,14 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import '../core/helper/utility.dart';
+import '../data/repository/dzikir_repository.dart';
 import '../model/dzikir/dzikir.dart';
 import '../model/surah/surah.dart';
 
 class DzikirController {
-  Future<List<Dzikir>> load(BuildContext context) async {
-    final jsonString = await DefaultAssetBundle.of(context)
-        .loadString("asset/data/dzikir.json");
+  final DzikirRepository _dzikirRepository;
 
-    final parsed = await compute(parseJson, jsonString);
-    final results = List<Dzikir>.from(parsed.map((e) => Dzikir.fromJson(e)));
+  DzikirController(this._dzikirRepository);
+
+  Future<List<Dzikir>> find() async {
+    final results = await _dzikirRepository.find();
 
     return results;
   }
@@ -22,9 +19,8 @@ class DzikirController {
     return results;
   }
 
-  Surah surah(String surahId, Dzikir dzikir) {
-    final results =
-        dzikir.surah!.firstWhere((element) => element.id == surahId);
+  Surah surah(String surahId, List<Surah> surahs) {
+    final results = surahs.firstWhere((element) => element.id == surahId);
 
     return results;
   }

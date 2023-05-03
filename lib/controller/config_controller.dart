@@ -1,25 +1,18 @@
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../data/repository/config_repository.dart';
 import '../model/config/config.dart';
 
 class ConfigController {
-  Future<Config> load() async {
-    final storage = await SharedPreferences.getInstance();
+  final ConfigRepository _configRepository;
 
-    Config configModel = const Config();
+  ConfigController(this._configRepository);
 
-    final stringConfig = storage.getString('config');
+  Future<Config> show() async {
+    final results = await _configRepository.show();
 
-    if (stringConfig != null) {
-      configModel = Config.fromJson(jsonDecode(stringConfig));
-    }
-
-    return configModel;
+    return results;
   }
 
-  Future<void> save(Config config) async {
-    final storage = await SharedPreferences.getInstance();
-
-    await storage.setString('config', jsonEncode(config.toJson()));
+  Future<void> update(Config config) async {
+    await _configRepository.update(config);
   }
 }

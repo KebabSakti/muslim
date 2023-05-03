@@ -1,59 +1,50 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../core/helper/failure.dart';
-import '../core/helper/utility.dart';
+import '../data/repository/bookmark_repository.dart';
 import '../model/bookmark/bookmark.dart';
 import '../model/dzikir/dzikir.dart';
 import '../model/item/item.dart';
 
 class BookmarkController {
+  final BookmarkRepository _bookmarkRepository;
+
+  BookmarkController(this._bookmarkRepository);
+
   Future<List<Bookmark>> init(List<Dzikir> dzikirs) async {
-    final storage = await SharedPreferences.getInstance();
-    final jsonString = storage.getString('bookmark');
+    final results = await Future.wait(dzikirs.map((e) async {
+      final firstSurah = e.surah!.first;
 
-    if (jsonString == null) {
-      final bookmarks = List<Bookmark>.from(dzikirs.map(
-        (e) {
-          final firstSurah = e.surah!.first;
+      final items =
+          List<Item>.from(e.surah!.map((e) => Item(id: e.id, count: 0)));
 
-          return Bookmark(
-            id: e.id,
-            mark: firstSurah.id,
-            item:
-                List<Item>.from(e.surah!.map((e) => Item(id: e.id, count: 0))),
-          );
-        },
-      ));
+      final bookmark = Bookmark(
+        id: e.id,
+        mark: firstSurah.id,
+        item: items,
+      );
 
-      await save(bookmarks);
-    }
+      await _bookmarkRepository.upsert(bookmark);
 
-    final updatedBookmarks = await load();
-
-    return updatedBookmarks;
-  }
-
-  Future<List<Bookmark>> load() async {
-    final storage = await SharedPreferences.getInstance();
-    final jsonString = storage.getString('bookmark');
-
-    if (jsonString == null) {
-      throw InternalFailure();
-    }
-
-    final parsed = await compute(parseJson, jsonString);
-    final results =
-        List<Bookmark>.from(parsed.map((e) => Bookmark.fromJson(e)));
+      return bookmark;
+    }));
 
     return results;
   }
 
-  Future save(List<Bookmark> bookmarks) async {
-    final storage = await SharedPreferences.getInstance();
-    await storage.setString('bookmark', jsonEncode(bookmarks));
+  Future<List<Bookmark>> find() async {
+    final results = await _bookmarkRepository.find();
+
+    return results;
+  }
+
+  Future<void> upsert(Bookmark bookmark) async {
+    await _bookmarkRepository.upsert(bookmark);
+  }
+
+  Future<void> delete(String bookmarkId) async {
+    await _bookmarkRepository.delete(bookmarkId);
+  }
+
+  Future<void> clear() async {
+    await _bookmarkRepository.clear();
   }
 
   Bookmark bookmark(String bookmarkId, List<Bookmark> bookmarks) {
@@ -62,28 +53,9 @@ class BookmarkController {
     return results;
   }
 
-  Item item(String itemId, Bookmark bookmark) {
-    final results =
-        bookmark.item!.firstWhere((element) => element.id == itemId);
+  Item item(String itemId, List<Item> items) {
+    final results = items.firstWhere((element) => element.id == itemId);
 
     return results;
-  }
-
-  Future update(Item item, Bookmark bookmark, List<Bookmark> bookmarks) async {
-    final itemIndex =
-        bookmark.item!.indexWhere((element) => element.id == item.id);
-    final bookmarksIndex =
-        bookmarks.indexWhere((element) => element.id == bookmark.id);
-
-    List<Bookmark> newBookmarks = List<Bookmark>.from(bookmarks);
-    List<Item> newItems = List<Item>.from(bookmark.item!);
-
-    newItems[itemIndex] = item;
-
-    Bookmark newBookmark = bookmark.copyWith(item: newItems);
-
-    newBookmarks[bookmarksIndex] = newBookmark;
-
-    await save(newBookmarks);
   }
 }

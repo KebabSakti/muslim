@@ -20,6 +20,7 @@ class CounterCubit extends Cubit<CounterState> {
   }
 
   void setCount(int count) {
+    emit(state.copyWith(loading: true));
     emit(CounterState(count: count));
   }
 

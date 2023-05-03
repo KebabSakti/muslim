@@ -15,6 +15,8 @@ dependencies:
   shared_preferences: ^2.1.0
   flutter_native_splash: ^2.2.16
   get_it: ^7.3.0
+  audioplayers: ^4.0.1
+  easy_debounce: ^2.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -22,37 +24,44 @@ dev_dependencies:
   build_runner: ^2.3.3
   freezed: ^2.3.2
   json_serializable: ^6.6.0
+  flutter_launcher_icons: "^0.13.1"
 flutter_native_splash:
   color: "#F8F8F8"
-  image: asset/image/pray.png
+  image: assets/image/muslim.png
   android: true
   ios: true
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/image/muslim.png"
+  ios: true
+  remove_alpha_ios: true
 flutter:
   uses-material-design: true
   assets:
-    - asset/image/
-    - asset/data/
+    - assets/image/
+    - assets/data/
+    - assets/sound/
   fonts:
     - family: Montserrat
       fonts:
-        - asset: asset/font/Montserrat-Regular.ttf
-        - asset: asset/font/Montserrat-Italic.ttf
+        - asset: assets/font/Montserrat-Regular.ttf
+        - asset: assets/font/Montserrat-Italic.ttf
           style: italic
-        - asset: asset/font/Montserrat-Medium.ttf
+        - asset: assets/font/Montserrat-Medium.ttf
           weight: 500
-        - asset: asset/font/Montserrat-MediumItalic.ttf
+        - asset: assets/font/Montserrat-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: asset/font/Montserrat-SemiBold.ttf
+        - asset: assets/font/Montserrat-SemiBold.ttf
           weight: 600
-        - asset: asset/font/Montserrat-SemiBoldItalic.ttf
+        - asset: assets/font/Montserrat-SemiBoldItalic.ttf
           weight: 600
           style: italic
-        - asset: asset/font/Montserrat-Bold.ttf
+        - asset: assets/font/Montserrat-Bold.ttf
           weight: 700
-        - asset: asset/font/Montserrat-BoldItalic.ttf
+        - asset: assets/font/Montserrat-BoldItalic.ttf
           weight: 700
           style: italic
     - family: Arabic
       fonts:
-        - asset: asset/font/qalam.ttf
+        - asset: assets/font/qalam.ttf

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CounterState {
   int get count => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CounterStateCopyWith<CounterState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $CounterStateCopyWith<$Res> {
           CounterState value, $Res Function(CounterState) then) =
       _$CounterStateCopyWithImpl<$Res, CounterState>;
   @useResult
-  $Res call({int count});
+  $Res call({int count, bool loading});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$CounterStateCopyWithImpl<$Res, $Val extends CounterState>
   @override
   $Res call({
     Object? count = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_CounterStateCopyWith<$Res>
       __$$_CounterStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int count});
+  $Res call({int count, bool loading});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$_CounterStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = null,
+    Object? loading = null,
   }) {
     return _then(_$_CounterState(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -92,14 +103,17 @@ class __$$_CounterStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CounterState implements _CounterState {
-  const _$_CounterState({required this.count});
+  const _$_CounterState({required this.count, this.loading = false});
 
   @override
   final int count;
+  @override
+  @JsonKey()
+  final bool loading;
 
   @override
   String toString() {
-    return 'CounterState(count: $count)';
+    return 'CounterState(count: $count, loading: $loading)';
   }
 
   @override
@@ -107,11 +121,12 @@ class _$_CounterState implements _CounterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CounterState &&
-            (identical(other.count, count) || other.count == count));
+            (identical(other.count, count) || other.count == count) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, count);
+  int get hashCode => Object.hash(runtimeType, count, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +136,13 @@ class _$_CounterState implements _CounterState {
 }
 
 abstract class _CounterState implements CounterState {
-  const factory _CounterState({required final int count}) = _$_CounterState;
+  const factory _CounterState({required final int count, final bool loading}) =
+      _$_CounterState;
 
   @override
   int get count;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$_CounterStateCopyWith<_$_CounterState> get copyWith =>
